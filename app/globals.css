@@ -7,6 +7,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-susco-cream: var(--susco-cream);
+  --color-susco-green: var(--susco-green);
+  --color-susco-mint: var(--susco-mint);
+  --color-susco-charcoal: var(--susco-charcoal);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
@@ -49,14 +53,18 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --susco-cream: oklch(0.98 0.008 95);
+  --susco-green: oklch(0.38 0.09 155);
+  --susco-mint: oklch(0.88 0.1 145);
+  --susco-charcoal: oklch(0.28 0.01 50);
+  --background: var(--susco-cream);
+  --foreground: var(--susco-charcoal);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: var(--susco-green);
+  --primary-foreground: oklch(0.99 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);

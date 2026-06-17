@@ -2,7 +2,11 @@
 
 import { useSyncExternalStore } from "react";
 
-import { getChoices, TRACKER_CHANGE_EVENT } from "@/lib/tracker/tracker-store";
+import {
+  getChoicesServerSnapshot,
+  getChoicesSnapshot,
+  TRACKER_CHANGE_EVENT,
+} from "@/lib/tracker/tracker-store";
 import type { UserChoice } from "@/lib/types/tracker";
 
 function subscribe(callback: () => void) {
@@ -10,10 +14,10 @@ function subscribe(callback: () => void) {
   return () => window.removeEventListener(TRACKER_CHANGE_EVENT, callback);
 }
 
-function getServerSnapshot(): UserChoice[] {
-  return [];
-}
-
 export function useTrackerChoices(): UserChoice[] {
-  return useSyncExternalStore(subscribe, getChoices, getServerSnapshot);
+  return useSyncExternalStore(
+    subscribe,
+    getChoicesSnapshot,
+    getChoicesServerSnapshot
+  );
 }

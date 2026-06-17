@@ -4,7 +4,8 @@ import { useSyncExternalStore } from "react";
 
 import {
   COMPARE_CHANGE_EVENT,
-  getCompareIds,
+  getCompareServerSnapshot,
+  getCompareSnapshot,
 } from "@/lib/compare/compare-store";
 
 function subscribe(callback: () => void) {
@@ -12,10 +13,10 @@ function subscribe(callback: () => void) {
   return () => window.removeEventListener(COMPARE_CHANGE_EVENT, callback);
 }
 
-function getServerSnapshot(): string[] {
-  return [];
-}
-
 export function useCompareTray(): string[] {
-  return useSyncExternalStore(subscribe, getCompareIds, getServerSnapshot);
+  return useSyncExternalStore(
+    subscribe,
+    getCompareSnapshot,
+    getCompareServerSnapshot
+  );
 }

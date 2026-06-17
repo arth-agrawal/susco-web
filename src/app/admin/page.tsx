@@ -3,22 +3,26 @@ import { EvidenceAdminTable } from "@/components/admin/evidence-admin-table";
 import { ProductAdminTable } from "@/components/admin/product-admin-table";
 import { RatingReviewCard } from "@/components/admin/rating-review-card";
 import { mockEvidenceItems } from "@/lib/data/mock-evidence";
-import { mockProducts } from "@/lib/data/mock-products";
 import { sourceRegistry } from "@/lib/data/source-registry";
+import { getAllProducts } from "@/lib/services/product-service";
 
 export default function AdminPage() {
-  const lowConfidence = mockProducts.filter(
+  const products = getAllProducts();
+  const lowConfidence = products.filter(
     (product) => product.rating.confidence === "Low"
   );
-  const missingData = mockProducts
+  const missingData = products
     .filter((product) => product.rating.missingData.length > 2)
     .slice(0, 3);
 
   return (
     <AdminShell>
       <div className="space-y-8">
+        <div className="rounded-[8px] border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100">
+          Internal research workspace — not linked from public navigation.
+        </div>
         <div>
-          <p className="text-sm font-medium text-amber-200">Internal</p>
+          <p className="text-sm font-medium text-amber-200">Internal only</p>
           <h1 className="mt-1 text-3xl font-semibold tracking-tight text-white">
             Evidence and rating operations
           </h1>
@@ -29,7 +33,7 @@ export default function AdminPage() {
         </div>
 
         <div className="grid gap-3 md:grid-cols-4">
-          <AdminStat label="Products" value={mockProducts.length} />
+          <AdminStat label="Products" value={products.length} />
           <AdminStat label="Evidence records" value={mockEvidenceItems.length} />
           <AdminStat label="Source records" value={sourceRegistry.length} />
           <AdminStat label="Low confidence" value={lowConfidence.length} />
@@ -37,7 +41,7 @@ export default function AdminPage() {
 
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-white">Product index</h2>
-          <ProductAdminTable products={mockProducts} />
+          <ProductAdminTable products={products} />
         </section>
 
         <section className="space-y-3">

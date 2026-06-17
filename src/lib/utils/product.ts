@@ -1,6 +1,5 @@
 import { categories } from "@/config/categories";
 import { confidenceLevels } from "@/config/scoring";
-import { mockProducts } from "@/lib/data/mock-products";
 import { compareRatings } from "@/lib/scoring/rating-utils";
 import type { CommercePlatform } from "@/lib/types/commerce";
 import type { Product } from "@/lib/types/product";
@@ -10,10 +9,6 @@ export const CATEGORY_CHIPS = [
   "All",
   ...categories.map((category) => category.shortLabel),
 ] as const;
-
-export function getProductById(id: string): Product | undefined {
-  return mockProducts.find((product) => product.id === id || product.slug === id);
-}
 
 export function formatPrice(price: number, currency = "INR"): string {
   return new Intl.NumberFormat("en-IN", {

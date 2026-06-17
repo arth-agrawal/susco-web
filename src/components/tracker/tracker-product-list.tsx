@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ConfidencePill } from "@/components/score/confidence-pill";
 import { ScoreBadge } from "@/components/score/score-badge";
 import { Button } from "@/components/ui/button";
-import type { TrackedProduct } from "@/lib/data/mock-tracker";
+import type { TrackedProduct } from "@/lib/types/tracker";
 import type { UserChoiceAction } from "@/lib/types/tracker";
 import { getPrimaryImage } from "@/lib/utils/product";
 

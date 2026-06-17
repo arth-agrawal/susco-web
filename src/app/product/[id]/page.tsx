@@ -6,19 +6,23 @@ import { ProductFactorList } from "@/components/product/product-factor-list";
 import { SimilarProducts } from "@/components/product/similar-products";
 import { EvidenceList } from "@/components/score/evidence-list";
 import { MissingDataCard } from "@/components/score/missing-data-card";
+import { RatingDisclaimer } from "@/components/score/rating-disclaimer";
 import { RatingSummaryCard } from "@/components/score/rating-summary-card";
 import { ScoreBreakdown } from "@/components/score/score-breakdown";
 import { PageShell } from "@/components/layout/page-shell";
-import { getEvidenceForProduct } from "@/lib/data/mock-evidence";
-import { getProductByIdOrSlug, mockProducts } from "@/lib/data/mock-products";
-import { getSimilarProducts } from "@/lib/search/similarity";
+import {
+  getAllProducts,
+  getProductByIdOrSlug,
+  getProductEvidence,
+  getSimilarProductsService,
+} from "@/lib/services/product-service";
 
 type ProductPageProps = {
   params: Promise<{ id: string }>;
 };
 
 export function generateStaticParams() {
-  return mockProducts.map((product) => ({ id: product.slug }));
+  return getAllProducts().map((product) => ({ id: product.slug }));
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
@@ -27,8 +31,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   if (!product) notFound();
 
-  const evidence = getEvidenceForProduct(product.id);
-  const similar = getSimilarProducts(product);
+  const evidence = getProductEvidence(product.id);
+  const similar = getSimilarProductsService(product.id);
 
   return (
     <PageShell>
@@ -41,6 +45,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <span className="text-stone-800">{product.canonicalName}</span>
         </nav>
         <ProductDetailHeader product={product} />
+        <RatingDisclaimer />
         <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
           <RatingSummaryCard rating={product.rating} />
           <ScoreBreakdown dimensions={product.rating.perDimension} />

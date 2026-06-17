@@ -1,9 +1,9 @@
-import { mockProducts } from "@/lib/data/mock-products";
+import { getProductByIdOrSlug } from "@/lib/services/product-service";
 import type { Product } from "@/lib/types/product";
 import type { UserChoice, UserChoiceAction } from "@/lib/types/tracker";
 
 function getProduct(productId: string): Product {
-  const product = mockProducts.find((item) => item.id === productId);
+  const product = getProductByIdOrSlug(productId);
   if (!product) {
     throw new Error(`Missing mock product ${productId}`);
   }
@@ -67,13 +67,6 @@ export const mockUserChoices: UserChoice[] = [
   ),
 ];
 
-export type TrackedProduct = UserChoice & {
-  product: Product;
-};
-
-export const mockTrackedProducts: TrackedProduct[] = mockUserChoices.map(
-  (item) => ({
-    ...item,
-    product: getProduct(item.productId),
-  })
-);
+export function getChoicesForUser(userId: string): UserChoice[] {
+  return mockUserChoices.filter((choice) => choice.userId === userId);
+}

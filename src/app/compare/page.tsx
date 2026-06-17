@@ -1,16 +1,8 @@
 import Link from "next/link";
 
-import { CompareProductPicker } from "@/components/compare/compare-product-picker";
-import { CompareSummary } from "@/components/compare/compare-summary";
-import { CompareTable } from "@/components/compare/compare-table";
+import { ComparePageContent } from "@/components/compare/compare-page-content";
 import { PageShell } from "@/components/layout/page-shell";
 import { Button } from "@/components/ui/button";
-import { mockProducts } from "@/lib/data/mock-products";
-import {
-  getBestConfidenceProduct,
-  getBestEvidenceProduct,
-  getLowestMissingDataProduct,
-} from "@/lib/utils/product";
 
 type ComparePageProps = {
   searchParams: Promise<{ ids?: string }>;
@@ -18,13 +10,7 @@ type ComparePageProps = {
 
 export default async function ComparePage({ searchParams }: ComparePageProps) {
   const { ids } = await searchParams;
-  const idList = ids?.split(",").filter(Boolean) ?? [];
-  const products =
-    idList.length > 0
-      ? mockProducts.filter((product) => idList.includes(product.id))
-      : mockProducts.slice(0, 4);
-
-  const compared = products.length > 0 ? products : mockProducts.slice(0, 4);
+  const initialUrlIds = ids?.split(",").filter(Boolean) ?? [];
 
   return (
     <PageShell>
@@ -46,13 +32,7 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
             <Link href="/search">Back to search</Link>
           </Button>
         </div>
-        <CompareSummary
-          bestEvidence={getBestEvidenceProduct(compared)}
-          bestConfidence={getBestConfidenceProduct(compared)}
-          lowestMissing={getLowestMissingDataProduct(compared)}
-        />
-        <CompareProductPicker />
-        <CompareTable products={compared} />
+        <ComparePageContent initialUrlIds={initialUrlIds} />
       </div>
     </PageShell>
   );

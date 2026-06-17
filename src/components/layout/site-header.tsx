@@ -31,9 +31,6 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
-          <Button asChild variant="ghost" className="rounded-[8px]">
-            <Link href="/admin">Internal</Link>
-          </Button>
           <Button
             asChild
             className="rounded-[8px] bg-emerald-900 text-white hover:bg-emerald-950"

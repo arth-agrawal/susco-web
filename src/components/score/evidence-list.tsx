@@ -23,7 +23,7 @@ export function EvidenceList({ items }: { items: EvidenceItem[] }) {
           <a
             href={item.sourceUrl}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="inline-flex h-9 items-center gap-1.5 rounded-[8px] border border-stone-200 px-3 text-sm font-medium text-stone-700 transition-colors hover:border-emerald-800/20 hover:text-emerald-800"
           >
             Source

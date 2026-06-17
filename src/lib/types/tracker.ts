@@ -1,4 +1,5 @@
 import type { SustainabilityRating } from "@/lib/types/scoring";
+import type { Product } from "@/lib/types/product";
 
 export type UserChoiceAction = "saved" | "bought" | "avoided" | "compared";
 
@@ -12,9 +13,16 @@ export type UserChoice = {
   createdAt: string;
 };
 
+export type TrackedProduct = UserChoice & {
+  product: Product;
+};
+
 export type TrackerStats = {
   productsChecked: number;
   choicesSaved: number;
+  boughtCount: number;
+  avoidedCount: number;
+  comparedCount: number;
   betterChoices: number;
   averageRating: string;
   publicStreak: number;

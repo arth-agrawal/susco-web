@@ -6,7 +6,7 @@ import { SearchResultsHeader } from "@/components/search/search-results-header";
 import { ProductCard } from "@/components/product/product-card";
 import { PageShell } from "@/components/layout/page-shell";
 import type { SearchSortMode } from "@/lib/search/filters";
-import { searchProducts } from "@/lib/search/search-products";
+import { searchProductsService } from "@/lib/services/product-service";
 import type { CommercePlatform } from "@/lib/types/commerce";
 import type { ConfidenceLevel, SustainabilityBand } from "@/lib/types/scoring";
 
@@ -28,7 +28,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const confidence = getString(params.confidence) as ConfidenceLevel | undefined;
   const sort = getString(params.sort);
 
-  const result = searchProducts({
+  const result = searchProductsService({
     query,
     category,
     platform,

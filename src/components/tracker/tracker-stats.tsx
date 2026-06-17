@@ -3,7 +3,10 @@ import type { TrackerStats as TrackerStatsType } from "@/lib/types/tracker";
 export function TrackerStats({ stats }: { stats: TrackerStatsType }) {
   const items = [
     { label: "Products checked", value: stats.productsChecked },
-    { label: "Choices saved", value: stats.choicesSaved },
+    { label: "Saved", value: stats.choicesSaved },
+    { label: "Bought", value: stats.boughtCount },
+    { label: "Avoided", value: stats.avoidedCount },
+    { label: "Compared", value: stats.comparedCount },
     { label: "Better choices", value: stats.betterChoices },
     { label: "Average rating", value: stats.averageRating },
   ];
@@ -18,7 +21,7 @@ export function TrackerStats({ stats }: { stats: TrackerStatsType }) {
           <p className="text-xs font-medium uppercase tracking-wider text-stone-500">
             {item.label}
           </p>
-          <p className="mt-2 text-3xl font-semibold tracking-tight text-stone-950">
+          <p className="mt-2 text-2xl font-semibold tracking-tight text-stone-950 sm:text-3xl">
             {item.value}
           </p>
         </article>

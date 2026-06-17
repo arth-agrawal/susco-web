@@ -7,10 +7,10 @@ import { TrustSection } from "@/components/marketing/trust-section";
 import { VerticalsSection } from "@/components/marketing/verticals-section";
 import { ProductGrid } from "@/components/product/product-grid";
 import { Button } from "@/components/ui/button";
-import { mockProducts } from "@/lib/data/mock-products";
+import { getAllProducts } from "@/lib/services/product-service";
 
 export default function HomePage() {
-  const featured = mockProducts.slice(0, 6);
+  const featured = getAllProducts().slice(0, 6);
 
   return (
     <>

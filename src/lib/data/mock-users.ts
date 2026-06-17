@@ -10,6 +10,9 @@ export const mockUserProfile: UserProfile = {
   stats: {
     productsChecked: 128,
     choicesSaved: 34,
+    boughtCount: 8,
+    avoidedCount: 3,
+    comparedCount: 12,
     betterChoices: 19,
     averageRating: "Strong",
     publicStreak: 7,

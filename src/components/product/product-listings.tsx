@@ -12,7 +12,7 @@ export function ProductListings({ listings }: { listings: PlatformListing[] }) {
           key={listing.id}
           href={listing.url}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="grid gap-3 rounded-[8px] border border-stone-200 bg-white p-3 transition-colors hover:border-emerald-800/25 sm:grid-cols-[1fr_auto]"
         >
           <div>

@@ -75,26 +75,21 @@ export function isInCompare(productId: string): boolean {
   return getCompareSnapshot().includes(productId);
 }
 
-export function addToCompare(productId: string): string[] {
+export type CompareAddResult = "added" | "already_exists" | "limit_reached";
+
+export function addToCompare(productId: string): CompareAddResult {
   const current = getCompareSnapshot();
-  if (current.includes(productId)) return current;
-  if (current.length >= MAX_COMPARE) return current;
+  if (current.includes(productId)) return "already_exists";
+  if (current.length >= MAX_COMPARE) return "limit_reached";
   const next = [...current, productId];
   writeRaw(next);
-  return getCompareSnapshot();
+  return "added";
 }
 
 export function removeFromCompare(productId: string): string[] {
   const next = getCompareSnapshot().filter((id) => id !== productId);
   writeRaw(next);
   return getCompareSnapshot();
-}
-
-export function toggleCompare(productId: string): string[] {
-  if (isInCompare(productId)) {
-    return removeFromCompare(productId);
-  }
-  return addToCompare(productId);
 }
 
 export function clearCompare(): void {

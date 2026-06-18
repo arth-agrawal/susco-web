@@ -35,11 +35,6 @@ export function getAverageRatingLabel(products: Product[]) {
   return entry?.band ?? "Insufficient Evidence";
 }
 
-export function getHighConfidenceCount(products: Product[]) {
-  return products.filter((product) => product.rating.confidence === "High")
-    .length;
-}
-
 export function deriveTrackerStats(
   choices: UserChoice[],
   products: Product[]

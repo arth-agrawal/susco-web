@@ -68,11 +68,3 @@ export function deriveBadges(
     unlockedAt: badge.isUnlocked(choices, products) ? today : undefined,
   }));
 }
-
-export function getUnlockedBadges(badges: UserBadge[]) {
-  return badges.filter((badge) => Boolean(badge.unlockedAt));
-}
-
-export function getLockedBadges(badges: UserBadge[]) {
-  return badges.filter((badge) => !badge.unlockedAt);
-}

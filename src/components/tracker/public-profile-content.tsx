@@ -42,8 +42,15 @@ export function PublicProfileContent({
     <div className="space-y-8">
       <ProfileHeader profile={enrichedProfile} publicView />
       <div className="rounded-[8px] border border-stone-200 bg-white p-4 text-sm text-stone-600 shadow-sm">
-        Public profile for @{profile.username}. Choices shown are scoped to this
-        user&apos;s tracked products.
+        <p className="font-medium text-stone-900">Public profile preview</p>
+        <p className="mt-1 leading-relaxed">
+          This page shows @{profile.username}&apos;s seeded demo choices only.
+          It is separate from your device-local tracker at{" "}
+          <Link href="/tracker" className="font-medium text-emerald-900 hover:underline">
+            /tracker
+          </Link>
+          .
+        </p>
       </div>
       <TrackerStats stats={stats} />
       <ShareCardPreview profile={enrichedProfile} />
@@ -63,7 +70,7 @@ export function PublicProfileContent({
         href="/tracker"
         className="inline-flex items-center gap-1 text-sm font-medium text-emerald-900 hover:underline"
       >
-        Open your tracker
+        Open your local tracker
         <ArrowRight className="size-4" />
       </Link>
     </div>

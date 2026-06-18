@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Search } from "lucide-react";
+import { ArrowRight, ExternalLink, Search } from "lucide-react";
 
 import { BadgeGrid } from "@/components/tracker/badge-grid";
 import { ProfileHeader } from "@/components/tracker/profile-header";
@@ -11,7 +11,7 @@ import { TrackerStats } from "@/components/tracker/tracker-stats";
 import { TrackerSummary } from "@/components/tracker/tracker-summary";
 import { Button } from "@/components/ui/button";
 import { useTrackerChoices } from "@/hooks/use-tracker-choices";
-import { mockUserProfile } from "@/lib/data/mock-users";
+import { localUserProfile } from "@/lib/data/local-user-profile";
 import { getAllProducts } from "@/lib/services/product-service";
 import { deriveBadges } from "@/lib/tracker/badges";
 import { deriveTrackerStats } from "@/lib/tracker/stats";
@@ -30,7 +30,7 @@ export function TrackerPageContent() {
   const badges = deriveBadges(choices, products);
 
   const profile: UserProfile = {
-    ...mockUserProfile,
+    ...localUserProfile,
     stats,
     badges,
   };
@@ -38,18 +38,19 @@ export function TrackerPageContent() {
   if (choices.length === 0) {
     return (
       <div className="space-y-8">
-        <ProfileHeader profile={profile} />
+        <ProfileHeader profile={profile} localDevice />
         <TrackerEmptyState />
+        <PreviewPublicProfileLink />
       </div>
     );
   }
 
   return (
     <div className="space-y-8">
-      <ProfileHeader profile={profile} />
+      <ProfileHeader profile={profile} localDevice />
       <p className="text-sm text-stone-600">
-        Track what you check, save, buy, and avoid. Your choices become your
-        sustainability profile.
+        Your private working profile on this device. Save, buy, avoid, and
+        compare products to build your sustainability tracker.
       </p>
       <TrackerStats stats={stats} />
       <TrackerSummary stats={stats} />
@@ -59,6 +60,27 @@ export function TrackerPageContent() {
       <TrackerProductList action="avoided" items={groups.avoided} />
       <TrackerProductList action="compared" items={groups.compared} />
       <BadgeGrid badges={badges} />
+      <PreviewPublicProfileLink />
+    </div>
+  );
+}
+
+function PreviewPublicProfileLink() {
+  return (
+    <div className="rounded-[8px] border border-stone-200 bg-white p-4 shadow-sm">
+      <p className="text-sm font-medium text-stone-950">
+        Preview a public profile
+      </p>
+      <p className="mt-1 text-sm text-stone-600">
+        See how a shareable SusCo profile looks with seeded demo data. Your
+        local tracker choices stay on this device.
+      </p>
+      <Button asChild variant="outline" className="mt-3 rounded-[8px]">
+        <Link href="/profile/aanya">
+          Preview public profile
+          <ExternalLink className="size-4" />
+        </Link>
+      </Button>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ScanSearch } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { SearchBar } from "@/components/search/search-bar";
 import { Button } from "@/components/ui/button";
@@ -9,20 +9,19 @@ import { getPrimaryImage } from "@/lib/utils/product";
 
 export function HeroSection({ products }: { products: Product[] }) {
   return (
-    <section className="relative overflow-hidden border-b border-stone-200/80">
+    <section
+      id="explore"
+      className="scroll-mt-20 border-b border-stone-200/80 bg-[#fbfaf5]"
+    >
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-16">
         <div className="flex flex-col justify-center">
-          <p className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-emerald-900/15 bg-emerald-50 px-3 py-1 text-sm font-medium text-emerald-900">
-            <ScanSearch className="size-4" />
-            Evidence-backed shopping intelligence
-          </p>
-          <h1 className="max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-stone-950 sm:text-6xl">
-            The sustainability layer for online shopping.
-          </h1>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-stone-600 sm:text-lg">
-            Search products across beauty, fashion, and food. Compare
-            sustainability ratings, evidence, missing data, and better
-            alternatives before you buy.
+          <p className="text-sm font-medium text-stone-500">Product discovery</p>
+          <h2 className="mt-2 max-w-xl text-3xl font-semibold tracking-tight text-stone-950 sm:text-4xl">
+            Search scored products
+          </h2>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-stone-600 sm:text-base">
+            Start with a product you already planned to buy. Compare ratings,
+            evidence, and better alternatives before click-out.
           </p>
           <div className="mt-7 max-w-2xl">
             <SearchBar size="hero" />

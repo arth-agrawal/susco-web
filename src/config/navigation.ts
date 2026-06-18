@@ -3,4 +3,5 @@ export const mainNavItems = [
   { href: "/categories", label: "Categories" },
   { href: "/compare", label: "Compare" },
   { href: "/tracker", label: "Tracker" },
+  { href: "/about", label: "About" },
 ];

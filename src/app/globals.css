@@ -133,9 +133,50 @@
     @apply bg-background text-foreground;
   }
   html {
-    @apply font-sans;
+    @apply scroll-smooth font-sans;
   }
   ::selection {
     @apply bg-emerald-900 text-white;
   }
+}
+
+@keyframes intro-reveal-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes intro-scan-line {
+  0% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(120px);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+}
+
+.intro-reveal-glow {
+  background: radial-gradient(
+    ellipse at center,
+    rgb(52 211 153 / 0.35),
+    rgb(16 185 129 / 0.12) 45%,
+    transparent 70%
+  );
+  animation: intro-reveal-glow 4s ease-in-out infinite;
+}
+
+.intro-scan-line {
+  animation: intro-scan-line 5s ease-in-out infinite;
 }

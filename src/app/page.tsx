@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 import { CategoryShowcase } from "@/components/marketing/category-showcase";
 import { HeroSection } from "@/components/marketing/hero-section";
+import { IntroHero } from "@/components/marketing/intro-hero";
 import { TrustSection } from "@/components/marketing/trust-section";
 import { VerticalsSection } from "@/components/marketing/verticals-section";
 import { ProductGrid } from "@/components/product/product-grid";
@@ -14,6 +15,7 @@ export default function HomePage() {
 
   return (
     <>
+      <IntroHero />
       <HeroSection products={featured} />
       <div className="mx-auto max-w-7xl space-y-14 px-4 py-12 sm:px-6 lg:px-8">
         <CategoryShowcase />

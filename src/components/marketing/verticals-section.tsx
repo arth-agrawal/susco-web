@@ -20,7 +20,7 @@ export function VerticalsSection() {
   ];
 
   return (
-    <section className="grid gap-4 lg:grid-cols-2">
+    <section id="how-it-works" className="scroll-mt-20 grid gap-4 lg:grid-cols-2">
       {items.map((item) => {
         const Icon = item.icon;
         return (
